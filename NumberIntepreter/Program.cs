@@ -1,4 +1,4 @@
-﻿using NumberIntepritator;
+﻿using NumberIntepreter;
 
 var builder = WebApplication.CreateBuilder(args);
 

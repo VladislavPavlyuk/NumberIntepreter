@@ -1,4 +1,4 @@
-﻿namespace NumberIntepritator
+﻿namespace NumberIntepreter
 {
     public static class FromTwentyToHundredExtensions
     {

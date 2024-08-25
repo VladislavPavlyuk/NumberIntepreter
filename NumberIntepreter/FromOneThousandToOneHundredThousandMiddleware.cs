@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NumberIntepritator
+namespace NumberIntepreter
 {
 
     public class FromOneThousandToOneHundredThousandMiddleware //  1000 ... 10000

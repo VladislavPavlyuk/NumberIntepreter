@@ -1,4 +1,4 @@
-﻿namespace NumberIntepritator
+﻿namespace NumberIntepreter
 { 
     public class FromOneHundredToOneThousandMiddleware  // 101 ... 1000
     { 

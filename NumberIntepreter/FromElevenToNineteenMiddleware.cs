@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace NumberIntepritator
+namespace NumberIntepreter
 {
     public class FromElevenToNineteenMiddleware // 11 ... 20
     {
