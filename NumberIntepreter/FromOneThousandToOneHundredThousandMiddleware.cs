@@ -1,8 +1,6 @@
-﻿using System;
-
+﻿
 namespace NumberIntepreter
 {
-
     public class FromOneThousandToOneHundredThousandMiddleware //  1000 ... 10000
     { 
         private readonly RequestDelegate _next;
@@ -42,22 +40,22 @@ namespace NumberIntepreter
                         countNumbersInDigit++;
                     }
                      
-                    var thousands = 0;
+                    var thousand = 0;
                     if (countNumbersInDigit > 3)
                     {
-                        thousands = number / 1000;
+                        thousand = number / 1000;
                         number %= 1000;
                         countNumbersInDigit -= 3;
                     }
                      
-                    if (thousands > 0)
+                    if (thousand > 0)
                     {
                         var result = string.Empty;
                         if (countNumbersInDigit == 1) {
 
                             string[] Numbers = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
-                            result = Numbers[thousands - 1] + " " + "thousand";
+                            result = Numbers[thousand - 1] + " " + "thousand";
 
                             context.Session.SetString("number", result);
 
@@ -65,7 +63,7 @@ namespace NumberIntepreter
                         }
                         else if (countNumbersInDigit == 2) {
 
-                            var num1 = thousands / 10;
+                            var num1 = thousand / 10;
 
                             if (num1 == 1) {
 
@@ -74,11 +72,11 @@ namespace NumberIntepreter
                                     "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
                                     "seventeen", "eighteen", "nineteen"
                                 };
-                                result = Numbers[thousands % 10];
+                                result = Numbers[thousand % 10];
                             }
                             else  {
 
-                                var num2 = thousands % 10;
+                                var num2 = thousand % 10;
 
                                 string[] Numbers = { "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 

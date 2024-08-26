@@ -2,7 +2,7 @@
 
 namespace NumberIntepreter
 {
-    public class FromElevenToNineteenMiddleware // 11 ... 20
+    public class FromElevenToNineteenMiddleware
     {
         private readonly RequestDelegate _next;
 
@@ -26,7 +26,7 @@ namespace NumberIntepreter
                 {
                     string[] Numbers = { "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
                     // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is "  + Numbers[number - 11]);
+                    await context.Response.WriteAsync("Your number is " + Numbers[number - 11]);
                 }
             }
             catch (Exception)
