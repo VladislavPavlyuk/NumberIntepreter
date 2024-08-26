@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Diagnostics.Eventing.Reader;
 
 namespace NumberIntepreter
 {
@@ -18,16 +19,24 @@ namespace NumberIntepreter
             {
                 int number = Convert.ToInt32(token);
                 number = Math.Abs(number);
-                if (number < 11 || number > 19)
+                if (number < 11 || number > 19 && number < 100)
                 {
                     await _next.Invoke(context);  //Контекст запроса передаем следующему компоненту
                 }
-                else
+                else 
                 {
                     string[] Numbers = { "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
-                    // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is " + Numbers[number - 11]);
-                }
+
+                    if (number < 20)
+                    {
+                        // Выдаем окончательный ответ клиенту
+                        await context.Response.WriteAsync("Your number is " + Numbers[number - 11]);
+                    }
+                    else
+                    {
+                        context.Session.SetString("number", Numbers[number % 10 - 1]);
+                    }
+                }                 
             }
             catch (Exception)
             {
