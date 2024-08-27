@@ -43,9 +43,7 @@ namespace NumberIntepreter
                         else
                             await _next.Invoke(context);  //Контекст запроса передаем следующему компоненту
                     }
-                } 
-
-                                
+                }                                 
             }
             catch (Exception)
             {
