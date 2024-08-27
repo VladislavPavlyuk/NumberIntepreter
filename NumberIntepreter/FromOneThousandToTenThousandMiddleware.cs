@@ -28,7 +28,7 @@ namespace NumberIntepreter
                 else if (number == 10000)
                 {
                     // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is one ten thousand");
+                    await context.Response.WriteAsync("Your number is ten Thousand");
                 }
                 else
                 {
@@ -37,7 +37,7 @@ namespace NumberIntepreter
                     if (number % 1000 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 1] + " thousand ");
+                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 1] + " Thousand ");
                     }
                     else
                     {
@@ -46,14 +46,14 @@ namespace NumberIntepreter
                         string? result = context.Session.GetString("number"); // получим число от компонента 
 
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 1] + " thousand " + result);
+                        await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 1] + " Thousand " + result);
                     }
                 }
             }
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("Incorrect parameter");
+                await context.Response.WriteAsync("Incorrect parameter on 1000 ... 10'000");
             }
         }
     }

@@ -23,7 +23,7 @@
                 if (number == 100)
                 {
                     // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is one hundred");
+                    await context.Response.WriteAsync("Your number is one Hundred");
                 } 
                 if (number % 10 == 0 && number < 100)
                     {

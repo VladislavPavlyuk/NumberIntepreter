@@ -1,11 +1,11 @@
 ﻿
 namespace NumberIntepreter
 {
-    public class FromOneThousandToOneHundredThousandMiddleware //  1000 ... 10000
+    public class FromTenThousandToOneHundredThousandMiddleware //  10'000 ... 100'000
     { 
         private readonly RequestDelegate _next;
          
-        public FromOneThousandToOneHundredThousandMiddleware(RequestDelegate next)
+        public FromTenThousandToOneHundredThousandMiddleware(RequestDelegate next)
         { 
             _next = next;
         }
@@ -108,7 +108,7 @@ namespace NumberIntepreter
             } 
             catch (Exception) {
 
-                await context.Response.WriteAsync("Incorrect parameter");
+                await context.Response.WriteAsync("Incorrect parameter on 1000 ... 10'000");
             }
         }
     }

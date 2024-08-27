@@ -20,14 +20,14 @@ namespace NumberIntepreter
 
                 number = Math.Abs(number);
 
-                if ((number < 101) || (number > 1000))
+                if (number < 101)
                 {
                     await _next.Invoke(context); //Контекст запроса передаем следующему компоненту
                 }
                 else if (number == 1000)
                 {
                     // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is one thousand");
+                    await context.Response.WriteAsync("Your number is one Thousand");
                 }
                 else
                 {
@@ -36,7 +36,7 @@ namespace NumberIntepreter
                     if (number % 100 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 100 - 1] + " hundred ");
+                        await context.Response.WriteAsync("Your number is " + Numbers[number / 100 - 1] + " Hundred ");
                     }
                     else
                     {
@@ -44,15 +44,23 @@ namespace NumberIntepreter
 
                         string? result = context.Session.GetString("number"); // получим число от компонента 
 
-                        // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("\nYour number is " + Numbers[number / 100 - 1] + " hundred " + result);
+                        if (1000 < number)
+                        {
+                            while (1000 < number) { number %= 1000; }
+
+                                // Записываем в сессионную переменную number результат для компонента 
+                                context.Session.SetString("number", Numbers[number / 100 - 1] + " Hundred " + result);
+                        }
+                        else
+                            // Выдаем окончательный ответ клиенту
+                            await context.Response.WriteAsync("\nYour number is " + Numbers[number / 100 - 1] + " Hundred " + result);
                     }
                 }
             }
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("Incorrect parameter");
+                await context.Response.WriteAsync("Incorrect parameter on 100 ... 1000");
             }
         }
     }
