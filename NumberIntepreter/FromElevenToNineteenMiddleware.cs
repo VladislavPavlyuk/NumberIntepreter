@@ -19,24 +19,33 @@ namespace NumberIntepreter
             {
                 int number = Convert.ToInt32(token);
                 number = Math.Abs(number);
-                if (number < 11 || number > 19 && number < 100)
-                {
-                    await _next.Invoke(context);  //Контекст запроса передаем следующему компоненту
-                }
-                else 
-                {
-                    string[] Numbers = { "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
 
-                    if (number < 20)
+                string[] Numbers = { "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+
+                if (10 < number && number < 20) // если number в пределах 11 ... 19
+                {
+                    // Выдаем окончательный ответ клиенту
+                    await context.Response.WriteAsync("Your number is " + Numbers[number - 11]);
+                } 
+                else                            // если number за пределами 10 ... 20 
+                {
+                    if ( number < 11 || (20 < number && number < 100))
                     {
-                        // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number - 11]);
+                        await _next.Invoke(context);  //Контекст запроса передаем следующему компоненту
                     }
-                    else
+                    else                 
                     {
-                        context.Session.SetString("number", Numbers[number % 10 - 1]);
+                        if (number > 100) while (number > 100) { number %= 100; }
+
+                        if (10 < number && number < 20) // если number в пределах 11 ... 19
+
+                            context.Session.SetString("number", Numbers[number % 10 - 1]);
+                        else
+                            await _next.Invoke(context);  //Контекст запроса передаем следующему компоненту
                     }
-                }                 
+                } 
+
+                                
             }
             catch (Exception)
             {
