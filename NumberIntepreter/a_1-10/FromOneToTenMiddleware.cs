@@ -38,7 +38,7 @@ namespace NumberIntepreter
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("Incorrect parameter on 1 ... 9");
+                await context.Response.WriteAsync("Incorrect parameter on 1 ... 10");
             }
         }
     }

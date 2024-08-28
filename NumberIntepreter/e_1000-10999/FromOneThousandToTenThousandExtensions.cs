@@ -2,9 +2,9 @@
 {
 
     public static class FromOneThousandToTenThousandExtensions
-    { 
-        public static IApplicationBuilder UseThousand(this IApplicationBuilder builder)
-        { 
+    {
+        public static IApplicationBuilder UseOnesThousand(this IApplicationBuilder builder)
+        {
             return builder.UseMiddleware<FromOneThousandToTenThousandMiddleware>();
         }
     }

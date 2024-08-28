@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Diagnostics.Eventing.Reader;
-
-namespace NumberIntepreter
+﻿namespace NumberIntepreter
 {
     public class FromElevenToNineteenMiddleware
     {

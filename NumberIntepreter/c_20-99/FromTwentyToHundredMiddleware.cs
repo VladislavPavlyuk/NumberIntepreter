@@ -20,11 +20,6 @@
 
                 string[] Tens = { "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
-                if (number == 100)
-                {
-                    // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is one Hundred");
-                } 
                 if (number % 10 == 0 && number < 100)
                     {
                         // Выдаем окончательный ответ клиенту
@@ -58,7 +53,7 @@
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("Incorrect parameter on 20 ... 100");
+                await context.Response.WriteAsync("Incorrect parameter on 20 ... 99");
             }
         }
     }
