@@ -1,7 +1,7 @@
 ﻿
 namespace NumberIntepreter
 {
-    public class FromOneToTenMiddleware // 1 ... 10
+    public class FromOneToTenMiddleware : StringNumbers // 1 ... 10
     {
         private readonly RequestDelegate _next;
 
@@ -26,12 +26,18 @@ namespace NumberIntepreter
                 }
                 else
                 {
-                    string[] Ones = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
+                    //string[] Ones = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
 
                     // Любые числа больше 20, но не кратные 10
-                    if (number > 20)
-                        // Записываем в сессионную переменную number результат для компонента FromTwentyToHundredMiddleware
-                        context.Session.SetString("number", Ones[number % 10 - 1]);
+                    if (number > 20) 
+                    {
+                        if ((number % 10) > 0)
+                        {
+                            // Записываем в сессионную переменную number результат для компонента FromTwentyToHundredMiddleware
+                            context.Session.SetString("number", Ones[number % 10 - 1]);
+                        } else
+                            context.Session.SetString("number", Ones[9]);
+                    }
                     else
                         // Выдаем окончательный ответ клиенту
                         await context.Response.WriteAsync("\nYour number is " + Ones[number - 1]); // от 1 до 9

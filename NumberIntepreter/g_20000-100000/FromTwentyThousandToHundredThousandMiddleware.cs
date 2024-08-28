@@ -1,7 +1,7 @@
 ﻿
 namespace NumberIntepreter
 {
-    public class FromTwentyThousandToHundredThousandMiddleware //  20'000 ... 100'000
+    public class FromTwentyThousandToHundredThousandMiddleware : StringNumbers //  20'000 ... 100'000
     { 
         private readonly RequestDelegate _next;
          
@@ -34,7 +34,7 @@ namespace NumberIntepreter
                 }
                 else
                 {
-                    string[] Tens = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+                    //string[] Tens = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
                     if (number % 10000 == 0)
                     {

@@ -2,7 +2,7 @@
 
 namespace NumberIntepreter
 { 
-    public class FromOneHundredToOneThousandMiddleware  // 100 ... 999
+    public class FromOneHundredToOneThousandMiddleware : StringNumbers // 100 ... 999
     {
         private readonly RequestDelegate _next;
 
@@ -31,12 +31,12 @@ namespace NumberIntepreter
                 }
                 else
                 {
-                    string[] Numbers = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
+                    //string[] Ones = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
                     if (number % 100 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 100 - 1] + " Hundred ");
+                        await context.Response.WriteAsync("Your number is " + Ones[number / 100 - 1] + " Hundred ");
                     }
                     else
                     {
@@ -49,13 +49,13 @@ namespace NumberIntepreter
                             while (999 < number) { number %= 1000; }
                             if (99 < number)
                                 // Записываем в сессионную переменную number результат для компонента 
-                                context.Session.SetString("number", Numbers[number / 100 - 1] + " Hundred " + result);
+                                context.Session.SetString("number", Ones[number / 100 - 1] + " Hundred " + result);
                             else
                                 await _next.Invoke(context);  //Контекст запроса передаем следующему компоненту
                         }
                         else
                             // Выдаем окончательный ответ клиенту
-                            await context.Response.WriteAsync("\nYour number is " + Numbers[number / 100 - 1] + " Hundred " + result);
+                            await context.Response.WriteAsync("\nYour number is " + Ones[number / 100 - 1] + " Hundred " + result);
                     }
                 }
             }

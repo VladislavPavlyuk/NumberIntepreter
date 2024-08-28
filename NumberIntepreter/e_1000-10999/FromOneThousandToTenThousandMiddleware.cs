@@ -1,6 +1,6 @@
 ﻿namespace NumberIntepreter
 {
-    public class FromOneThousandToTenThousandMiddleware //  1000 ... 10'999
+    public class FromOneThousandToTenThousandMiddleware : StringNumbers//  1000 ... 10'999
     {
         private readonly RequestDelegate _next;
 
@@ -25,12 +25,12 @@
                 }
                 else
                 {
-                    string[] Numbers = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
+                    //string[] Ones = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
 
                     if (number % 1000 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 1] + " Thousand ");
+                        await context.Response.WriteAsync("Your number is " + Ones[number / 1000 - 1] + " Thousand ");
                     }
                     else
                     {
@@ -45,13 +45,13 @@
                             if (number > 1000)
                             {
                                 // Записываем в сессионную переменную number результат для компонента 
-                                context.Session.SetString("number", Numbers[number / 1000 - 1] + " Thousand " + result);
+                                context.Session.SetString("number", Ones[number / 1000 - 1] + " Thousand " + result);
                             } else
                                 context.Session.SetString("number", "Thousand " + result);
                         }
                         else
                             // Выдаем окончательный ответ клиенту
-                            await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 1] + " Thousand " + result);
+                            await context.Response.WriteAsync("\nYour number is " + Ones[number / 1000 - 1] + " Thousand " + result);
                     }
                 }
             }

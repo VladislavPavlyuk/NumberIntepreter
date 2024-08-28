@@ -1,6 +1,6 @@
 ﻿namespace NumberIntepreter
 {
-    public class FromTwentyToHundredMiddleware
+    public class FromTwentyToHundredMiddleware: StringNumbers
     {
         private readonly RequestDelegate _next;
 
@@ -19,7 +19,7 @@
 
                 number = Math.Abs(number);
 
-                string[] Tens = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+                //string[] Tens = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
                 if (19 < number && number % 10 == 0 && number < 100)
                     {

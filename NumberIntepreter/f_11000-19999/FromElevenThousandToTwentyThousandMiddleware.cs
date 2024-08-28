@@ -1,7 +1,7 @@
 ﻿
 namespace NumberIntepreter
 {
-    public class FromElevenThousandToTwentyThousandMiddleware //  11'000 ... 19'999
+    public class FromElevenThousandToTwentyThousandMiddleware : StringNumbers //  11'000 ... 19'999
     { 
         private readonly RequestDelegate _next;
          
@@ -25,12 +25,12 @@ namespace NumberIntepreter
                 }
                 else
                 {
-                    string[] Numbers = { "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "nineteen" };
+                    //string[] Teens = { "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "nineteen" };
 
                     if (number % 1000 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 11] + " Thousand ");
+                        await context.Response.WriteAsync("Your number is " + Teens[number / 1000 - 11] + " Thousand ");
                     }
                     else
                     {
@@ -43,11 +43,11 @@ namespace NumberIntepreter
                             while (19999 < number) { number %= 10000; }
 
                             // Записываем в сессионную переменную number результат для компонента 
-                            context.Session.SetString("number", Numbers[number / 1000 - 11] + " Thousand " + result);
+                            context.Session.SetString("number", Teens[number / 1000 - 11] + " Thousand " + result);
                         }
                         else
                             // Выдаем окончательный ответ клиенту
-                            await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 11] + " Thousand " + result);
+                            await context.Response.WriteAsync("\nYour number is " + Teens[number / 1000 - 11] + " Thousand " + result);
                     }
 
                 }
