@@ -10,8 +10,7 @@
         }
 
         public async Task Invoke(HttpContext context)
-        {
-            context.Session.Clear();
+        { 
 
             string? token = context.Request.Query["number"]; // Получим число из контекста запроса
             try

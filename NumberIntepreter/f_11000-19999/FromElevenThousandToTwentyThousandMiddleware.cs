@@ -35,7 +35,7 @@ namespace NumberIntepreter
                     if (number % 1000 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 1] + " Thousand ");
+                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 11] + " Thousand ");
                     }
                     else
                     {
@@ -43,9 +43,18 @@ namespace NumberIntepreter
 
                         string? result = context.Session.GetString("number"); // получим число от компонента 
 
-                        // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 1] + " Thousand " + result);
+                        if (19999 < number)
+                        {
+                            while (19999 < number) { number %= 10000; }
+
+                            // Записываем в сессионную переменную number результат для компонента 
+                            context.Session.SetString("number", Numbers[number / 1000 - 11] + " Thousand " + result);
+                        }
+                        else
+                            // Выдаем окончательный ответ клиенту
+                            await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 11] + " Thousand " + result);
                     }
+
                 }
             }
             catch (Exception)
