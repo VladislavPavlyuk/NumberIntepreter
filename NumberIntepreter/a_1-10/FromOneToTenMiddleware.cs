@@ -16,15 +16,17 @@ namespace NumberIntepreter
             try
             {
                 int number = Convert.ToInt32(token);
+
                 number = Math.Abs(number);
+
                 if (number == 10)
                 {
                     // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is ten");
+                    await context.Response.WriteAsync("\nYour number is Ten");
                 }
                 else
                 {
-                    string[] Ones = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+                    string[] Ones = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
                     // Любые числа больше 20, но не кратные 10
                     if (number > 20)
@@ -32,13 +34,13 @@ namespace NumberIntepreter
                         context.Session.SetString("number", Ones[number % 10 - 1]);
                     else
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Ones[number - 1]); // от 1 до 9
+                        await context.Response.WriteAsync("\nYour number is " + Ones[number - 1]); // от 1 до 9
                 }
             }
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("Incorrect parameter on 1 ... 10");
+                await context.Response.WriteAsync("\nIncorrect parameter on 1 ... 10");
             }
         }
     }

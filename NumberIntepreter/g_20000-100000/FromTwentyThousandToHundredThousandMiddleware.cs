@@ -1,16 +1,17 @@
 ﻿
 namespace NumberIntepreter
 {
-    public class FromElevenThousandToTwentyThousandMiddleware //  11'000 ... 19'999
+    public class FromTwentyThousandToHundredThousandMiddleware //  20'000 ... 100'000
     { 
         private readonly RequestDelegate _next;
          
-        public FromElevenThousandToTwentyThousandMiddleware(RequestDelegate next)
+        public FromTwentyThousandToHundredThousandMiddleware(RequestDelegate next)
         { 
             _next = next;
         }         
         public async Task Invoke(HttpContext context)
         { 
+            context.Session.Clear();
 
             string? token = context.Request.Query["number"]; // Получим число из контекста запроса
             try
@@ -19,18 +20,26 @@ namespace NumberIntepreter
 
                 number = Math.Abs(number);
 
-                 if (number < 11000 || 19999 < number) 
+                if (number == 100000)
+                {
+                    await context.Response.WriteAsync("Your number is One Hundred thousand");
+                }
+                else if (number > 100000)
+                {
+                    await context.Response.WriteAsync("Number greater than One Hundred thousand");
+                }
+                else if (number < 20000) 
                 {
                     await _next.Invoke(context); //Контекст запроса передаем следующему компоненту
                 }
                 else
                 {
-                    string[] Numbers = { "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "nineteen" };
+                    string[] Tens = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
-                    if (number % 1000 == 0)
+                    if (number % 10000 == 0)
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("Your number is " + Numbers[number / 1000 - 11] + " Thousand ");
+                        await context.Response.WriteAsync("Your number is " + Tens[number / 10000 - 2] + " Thousand ");
                     }
                     else
                     {
@@ -38,24 +47,15 @@ namespace NumberIntepreter
 
                         string? result = context.Session.GetString("number"); // получим число от компонента 
 
-                        if (19999 < number)
-                        {
-                            while (19999 < number) { number %= 10000; }
-
-                            // Записываем в сессионную переменную number результат для компонента 
-                            context.Session.SetString("number", Numbers[number / 1000 - 11] + " Thousand " + result);
-                        }
-                        else
-                            // Выдаем окончательный ответ клиенту
-                            await context.Response.WriteAsync("\nYour number is " + Numbers[number / 1000 - 11] + " Thousand " + result);
+                        // Выдаем окончательный ответ клиенту
+                        await context.Response.WriteAsync("\nYour number is " + Tens[number / 10000 - 2] + " " + result);
                     }
-
                 }
             }
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("Incorrect parameter on 11'000 ... 19'999");
+                await context.Response.WriteAsync("\nIncorrect parameter on 20'000 ... 100'000");
             }
         }
     }

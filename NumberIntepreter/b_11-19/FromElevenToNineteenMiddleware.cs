@@ -17,7 +17,7 @@
                 int number = Convert.ToInt32(token);
                 number = Math.Abs(number);
 
-                string[] Numbers = { "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+                string[] Numbers = { "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
 
                 if (10 < number && number < 20) // если number в пределах 11 ... 19
                 {

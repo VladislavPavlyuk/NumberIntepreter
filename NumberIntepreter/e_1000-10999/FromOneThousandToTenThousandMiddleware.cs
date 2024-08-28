@@ -19,18 +19,13 @@
 
                 number = Math.Abs(number);
 
-                if (number < 1001 || number > 10999)
+                if (number < 1000 || (number > 10999) && (number < 20000))
                 {
                     await _next.Invoke(context); //Контекст запроса передаем следующему компоненту
                 }
-                else if (number == 1000)
-                {
-                    // Выдаем окончательный ответ клиенту
-                    await context.Response.WriteAsync("Your number is one Thousand");
-                }
                 else
                 {
-                    string[] Numbers = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" };
+                    string[] Numbers = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
 
                     if (number % 1000 == 0)
                     {
@@ -47,8 +42,12 @@
                         {
                             while (10999 < number) { number %= 10000; }
 
-                            // Записываем в сессионную переменную number результат для компонента 
-                            context.Session.SetString("number", Numbers[number / 1000 - 1] + " Thousand " + result);
+                            if (number > 1000)
+                            {
+                                // Записываем в сессионную переменную number результат для компонента 
+                                context.Session.SetString("number", Numbers[number / 1000 - 1] + " Thousand " + result);
+                            } else
+                                context.Session.SetString("number", " Thousand " + result);
                         }
                         else
                             // Выдаем окончательный ответ клиенту
@@ -59,7 +58,7 @@
             catch (Exception)
             {
                 // Выдаем окончательный ответ клиенту
-                await context.Response.WriteAsync("\nIncorrect parameter on 1000 ... 9'999");
+                await context.Response.WriteAsync("\nIncorrect parameter on 1000 ... 10'999");
             }
         }
     }

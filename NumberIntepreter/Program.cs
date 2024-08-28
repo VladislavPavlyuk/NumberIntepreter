@@ -12,7 +12,7 @@ app.UseSession();   // Добавляем middleware-компонент для �
 
 // Добавляем middleware-компоненты в конвейер обработки запроса.
 
-//app.UseTensThousand();// 20'000 - 100'000
+app.UseTensThousand();  // 20'000 - 100'000
 app.UseTeensThousand(); // 11'000 - 19'999
 app.UseOnesThousand();  // 1000 - 10'999
 app.UseHundred();       // 100 - 999

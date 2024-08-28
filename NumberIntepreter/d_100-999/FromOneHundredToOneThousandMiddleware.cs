@@ -31,7 +31,7 @@ namespace NumberIntepreter
                 }
                 else
                 {
-                    string[] Numbers = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+                    string[] Numbers = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
                     if (number % 100 == 0)
                     {
