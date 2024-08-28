@@ -49,7 +49,7 @@
                     else
                     {
                         // Выдаем окончательный ответ клиенту
-                        await context.Response.WriteAsync("\nYour number iS " + Tens[number / 10 - 2] + " " + result);
+                        await context.Response.WriteAsync("\nYour number is " + Tens[number / 10 - 2] + " " + result);
                     }
                 }                
             }

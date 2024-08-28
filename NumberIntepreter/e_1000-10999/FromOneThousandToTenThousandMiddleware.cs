@@ -47,7 +47,7 @@
                                 // Записываем в сессионную переменную number результат для компонента 
                                 context.Session.SetString("number", Numbers[number / 1000 - 1] + " Thousand " + result);
                             } else
-                                context.Session.SetString("number", " Thousand " + result);
+                                context.Session.SetString("number", "Thousand " + result);
                         }
                         else
                             // Выдаем окончательный ответ клиенту
